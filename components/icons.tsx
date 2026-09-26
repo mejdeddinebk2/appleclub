@@ -54,6 +54,22 @@ export function ArrowRightIcon(props: IconProps) {
   );
 }
 
+export function CheckIcon(props: IconProps) {
+  return (
+    <svg {...stroke} {...props}>
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
+    </svg>
+  );
+}
+
+export function PlusIcon(props: IconProps) {
+  return (
+    <svg {...stroke} {...props}>
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+  );
+}
+
 export function CodeIcon(props: IconProps) {
   return (
     <svg {...stroke} {...props}>

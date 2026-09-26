@@ -56,6 +56,11 @@ export interface Activity {
   tags?: string[];
 }
 
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface Member {
   id: string;
   name: string;

@@ -1,0 +1,132 @@
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { CloseIcon, MenuIcon } from '@/components/icons';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
+import { navItems, siteConfig } from '@/data/site';
+import { asset, cn } from '@/lib/utils';
+
+export function Navbar() {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Close the mobile menu on navigation
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // Lock scroll + close on Escape while the mobile menu is open
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false);
+    };
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+
+  return (
+    <header
+      className={cn(
+        'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300',
+        scrolled || open
+          ? 'border-neutral-200/70 bg-white/75 backdrop-blur-xl backdrop-saturate-150 dark:border-neutral-800/70 dark:bg-black/70'
+          : 'border-transparent bg-transparent',
+      )}
+    >
+      <nav aria-label="Main" className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6 sm:px-8">
+        <Link
+          href="/"
+          aria-label={`${siteConfig.name} home`}
+          className="flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+        >
+          <Image src={asset('/logo.svg')} alt="" width={28} height={28} unoptimized className="h-7 w-7" />
+          <span className="text-[15px] font-semibold tracking-tight">{siteConfig.name}</span>
+        </Link>
+
+        <ul className="hidden items-center gap-1 md:flex">
+          {navItems.map((item) => (
+            <li key={item.href}>
+              <Link
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                className={cn(
+                  'rounded-full px-3 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
+                  isActive(item.href)
+                    ? 'font-medium text-neutral-900 dark:text-white'
+                    : 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white',
+                )}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <Link
+            href="/contact"
+            className="hidden rounded-full bg-accent px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 md:inline-flex dark:focus-visible:ring-offset-black"
+          >
+            Join Us
+          </Link>
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:hidden dark:hover:bg-neutral-800"
+          >
+            {open ? <CloseIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
+          </button>
+        </div>
+      </nav>
+
+      {open && (
+        <div id="mobile-menu" className="h-[calc(100svh-3.5rem)] animate-fade-in overflow-y-auto px-6 pb-10 pt-4 md:hidden">
+          <ul className="space-y-1">
+            {navItems.map((item, i) => (
+              <li key={item.href} className="animate-fade-up" style={{ animationDelay: `${i * 40}ms` }}>
+                <Link
+                  href={item.href}
+                  aria-current={isActive(item.href) ? 'page' : undefined}
+                  className={cn(
+                    'block border-b border-neutral-200/70 py-4 text-2xl font-semibold tracking-tight dark:border-neutral-800',
+                    isActive(item.href) ? 'text-accent dark:text-accent-light' : 'text-neutral-900 dark:text-white',
+                  )}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="/contact"
+            className="mt-8 flex w-full items-center justify-center rounded-full bg-accent px-6 py-3.5 font-medium text-white"
+          >
+            Join Us
+          </Link>
+        </div>
+      )}
+    </header>
+  );
+}

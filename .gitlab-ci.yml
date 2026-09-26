@@ -1,0 +1,45 @@
+default:
+  image: node:20-alpine
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - .npm/
+      - .next/cache/
+  before_script:
+    # Switch to `npm ci` once package-lock.json is committed.
+    - npm install --cache .npm --prefer-offline --no-audit --no-fund
+
+variables:
+  NEXT_TELEMETRY_DISABLED: "1"
+
+stages:
+  - test
+  - deploy
+
+# Lint + type-check + build on every merge request
+build:
+  stage: test
+  script:
+    - npm run lint
+    - npm run build
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+
+# Static export deployed to GitLab Pages from the default branch
+pages:
+  stage: deploy
+  variables:
+    STATIC_EXPORT: "true"
+  script:
+    - |
+      export NEXT_PUBLIC_SITE_URL="$CI_PAGES_URL"
+      # Derive the sub-path (e.g. /appleclub) from the Pages URL; empty when using a unique domain.
+      export NEXT_PUBLIC_BASE_PATH="$(echo "$CI_PAGES_URL" | sed -E 's#^https?://[^/]+##; s#/$##')"
+      echo "Building for $NEXT_PUBLIC_SITE_URL (basePath: '$NEXT_PUBLIC_BASE_PATH')"
+    - npm run build
+    - rm -rf public && mv out public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

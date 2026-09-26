@@ -1,0 +1,50 @@
+[
+  {
+    "id": "president",
+    "name": "Member Name",
+    "role": "President",
+    "photo": "/images/members/placeholder.svg",
+    "bio": "Leads the club vision and partnerships.",
+    "socials": {
+      "instagram": "https://www.instagram.com/",
+      "linkedin": "https://www.linkedin.com/",
+      "github": "https://github.com/"
+    }
+  },
+  {
+    "id": "vice-president",
+    "name": "Member Name",
+    "role": "Vice President",
+    "photo": "/images/members/placeholder.svg",
+    "bio": "Coordinates events and team operations.",
+    "socials": {
+      "instagram": "https://www.instagram.com/",
+      "linkedin": "https://www.linkedin.com/",
+      "github": "https://github.com/"
+    }
+  },
+  {
+    "id": "tech-lead",
+    "name": "Member Name",
+    "role": "Tech Lead",
+    "photo": "/images/members/placeholder.svg",
+    "bio": "Runs workshops and mentors project teams.",
+    "socials": {
+      "instagram": "https://www.instagram.com/",
+      "linkedin": "https://www.linkedin.com/",
+      "github": "https://github.com/"
+    }
+  },
+  {
+    "id": "design-lead",
+    "name": "Member Name",
+    "role": "Design Lead",
+    "photo": "/images/members/placeholder.svg",
+    "bio": "Crafts the club brand and product design.",
+    "socials": {
+      "instagram": "https://www.instagram.com/",
+      "linkedin": "https://www.linkedin.com/",
+      "github": "https://github.com/"
+    }
+  }
+]

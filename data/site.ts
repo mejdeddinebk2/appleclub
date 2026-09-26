@@ -6,25 +6,30 @@ const fallbackUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
 
 /** Global site settings. Edit these values to update content across the site. */
 export const siteConfig = {
-  name: 'Apple Club',
-  school: 'EPI Digital School',
-  campus: 'IMSET Sousse',
+  name: 'Apple Club EPI',
+  school: 'EPI Sup',
+  campus: 'Sousse, Tunisie',
   tagline: 'Think. Build. Innovate.',
   description:
-    'Apple Club is the official tech club of EPI Digital School (IMSET Sousse): a community of students who learn, build, and share through workshops, hackathons, and real projects.',
+    "L'Apple Club EPI est le premier club étudiant dédié au développement d'applications mobiles iOS au sein du groupe EPI Sup (École Polytechnique Internationale), à Sousse, Tunisie.",
   mission:
-    'We bring together students who love technology to learn by doing, share knowledge, and turn bold ideas into real products.',
+    "Connecter les étudiants avec l'écosystème iOS, organiser des événements technologiques, et concevoir des applications mobiles réelles.",
   vision:
-    'To be the place where every EPI Digital School student can discover technology, grow their skills, and launch projects that make an impact.',
+    "Former les étudiants aux technologies Apple et perfectionner leurs compétences en programmation mobile, pour en faire les futurs développeurs iOS de demain.",
+  contactEmail: 'apple.epiclub@gmail.com',
+  teacherAdvisor: {
+    name: 'Mme. Nahla Baccar',
+    role: 'Enseignante responsable',
+  },
   url: (process.env.NEXT_PUBLIC_SITE_URL || fallbackUrl).replace(/\/$/, ''),
   keywords: [
-    'Apple Club',
-    'EPI Digital School',
-    'IMSET Sousse',
-    'tech club',
+    'Apple Club EPI',
+    'EPI Sup',
+    'Sousse',
+    'iOS development',
+    'Apple technologies',
     'student club',
-    'hackathon',
-    'workshops',
+    'mobile apps',
     'Tunisia',
   ],
 };
@@ -38,43 +43,42 @@ export const navItems: NavItem[] = [
   { label: 'Contact', href: '/contact' },
 ];
 
-// TODO: replace with the club's real accounts.
 export const socialLinks: SocialLink[] = [
-  { platform: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/' },
-  { platform: 'discord', label: 'Discord', href: 'https://discord.com/' },
+  { platform: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/apple_epi_club/' },
+  { platform: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/100077138213374/?locale=fr_FR' },
 ];
 
 export const features: Feature[] = [
   {
     icon: 'code',
-    title: 'Workshops',
-    description: 'Hands-on sessions on web, mobile, AI, and design, led by students for students.',
+    title: 'Workshops iOS',
+    description: 'Sessions pratiques sur Swift, SwiftUI, et le développement mobile Apple, animées par et pour les étudiants.',
     href: '/activities',
   },
   {
     icon: 'trophy',
     title: 'Hackathons',
-    description: 'Intense, fun build sprints where ideas become working prototypes in a weekend.',
+    description: 'Des sprints intenses et fun où les idées deviennent des prototypes fonctionnels en un week-end.',
     href: '/activities',
   },
   {
     icon: 'bulb',
-    title: 'Projects',
-    description: 'Real products built in teams, from the first sketch all the way to launch.',
+    title: 'Projets',
+    description: "De vraies applications construites en équipe, du premier croquis jusqu'au lancement.",
     href: '/activities',
   },
   {
     icon: 'users',
-    title: 'Community',
-    description: 'A welcoming network of curious minds, mentors, and future founders.',
+    title: 'Communauté',
+    description: "Un réseau accueillant d'esprits curieux, de mentors, et de futurs développeurs iOS.",
     href: '/members',
   },
 ];
 
 // Sample figures: update them with the club's real numbers.
 export const stats: Stat[] = [
-  { value: '50+', label: 'Active members' },
-  { value: '20+', label: 'Workshops hosted' },
+  { value: '50+', label: 'Membres actifs' },
+  { value: '20+', label: 'Workshops organisés' },
   { value: '5', label: 'Hackathons' },
-  { value: '10+', label: 'Projects shipped' },
+  { value: '10+', label: 'Projets lancés' },
 ];

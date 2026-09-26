@@ -39,6 +39,23 @@ export interface Milestone {
   description: string;
 }
 
+export type ActivityCategory = 'Workshop' | 'Hackathon' | 'Project';
+
+export interface Activity {
+  id: string;
+  title: string;
+  /** ISO date, e.g. "2025-03-12" */
+  date: string;
+  category: ActivityCategory;
+  description: string;
+  /** Path inside /public, e.g. "/images/activities/hackathon.jpg". Omit it for a gradient cover. */
+  image?: string;
+  imageAlt?: string;
+  /** Internal ("/gallery") or external ("https://...") link. */
+  link?: { href: string; label?: string };
+  tags?: string[];
+}
+
 export interface Member {
   id: string;
   name: string;

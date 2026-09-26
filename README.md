@@ -44,6 +44,7 @@ public/              Logo and images
 
 - **Text, nav, socials, stats:** `data/site.ts`
 - **Members:** `data/members.json`. Each entry has `id`, `name`, `role`, `team` (e.g. `Board`, `Dev Team`, `Design Team`), optional `photo` (put files in `public/images/members/`; omit it for an initials avatar), optional `bio`, and `socials` (`linkedin`, `github`, `instagram`). Team order and blurbs live in `data/members.ts`.
+- **Activities:** `data/activities.ts`. Each entry has `id`, `title`, `date` (`YYYY-MM-DD`), `category` (`Workshop`, `Hackathon`, or `Project`), `description`, and optional `image` (in `public/images/activities/`), `imageAlt`, `link`, and `tags`.
 - **Logo:** replace `public/logo.svg` and `app/icon.svg` (favicon).
 - **Social preview image:** add a 1200x630 `app/opengraph-image.png`. Next.js picks it up automatically.
 

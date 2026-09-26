@@ -1,18 +1,35 @@
-import { ComingSoon } from '@/components/sections/ComingSoon';
+import { EventsTimeline } from '@/components/events/EventsTimeline';
+import { JoinCta } from '@/components/home/JoinCta';
+import { Reveal } from '@/components/ui/Reveal';
+import { Section } from '@/components/ui/Section';
+import { SectionHeading } from '@/components/ui/SectionHeading';
+import { events } from '@/data/events';
 import { createMetadata } from '@/lib/metadata';
 
 export const metadata = createMetadata({
   title: 'Events',
-  description: 'Upcoming Apple Club events at EPI Digital School (IMSET Sousse).',
+  description:
+    'Upcoming and past Apple Club events at EPI Digital School (IMSET Sousse): workshops, hackathons, meetups, and talks.',
   path: '/events',
 });
 
 export default function EventsPage() {
   return (
-    <ComingSoon
-      eyebrow="Events"
-      title="What is coming up."
-      description="Our calendar of upcoming workshops, talks, and hackathons."
-    />
+    <>
+      <Section className="pb-12 sm:pb-16">
+        <Reveal>
+          <SectionHeading
+            as="h1"
+            eyebrow="Events"
+            title="What is coming up."
+            description="Workshops, hackathons, meetups, and talks. Everyone at EPI Digital School is welcome."
+          />
+        </Reveal>
+      </Section>
+
+      <EventsTimeline events={events} renderedAt={Date.now()} />
+
+      <JoinCta />
+    </>
   );
 }

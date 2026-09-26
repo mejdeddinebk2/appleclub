@@ -28,9 +28,17 @@ export interface Stat {
 export interface Member {
   id: string;
   name: string;
+  /** Displayed title, e.g. "President", "Dev Lead", "UI/UX Designer" */
   role: string;
-  /** Path inside /public, e.g. "/images/members/jane.jpg" */
-  photo: string;
+  /** Group the member belongs to, e.g. "Board", "Dev Team", "Design Team". Defaults to "Members". */
+  team?: string;
+  /** Path inside /public, e.g. "/images/members/jane.jpg". Omit it to show an initials avatar. */
+  photo?: string;
   bio?: string;
   socials: Partial<Record<SocialPlatform, string>>;
+}
+
+export interface MemberGroup {
+  team: string;
+  members: Member[];
 }

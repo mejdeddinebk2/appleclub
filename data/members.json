@@ -1,50 +1,91 @@
 [
   {
-    "id": "president",
-    "name": "Member Name",
+    "id": "yasmine-trabelsi",
+    "name": "Yasmine Trabelsi",
     "role": "President",
+    "team": "Board",
     "photo": "/images/members/placeholder.svg",
-    "bio": "Leads the club vision and partnerships.",
+    "bio": "Leads the club vision, partnerships, and big-picture planning.",
     "socials": {
-      "instagram": "https://www.instagram.com/",
       "linkedin": "https://www.linkedin.com/",
-      "github": "https://github.com/"
+      "github": "https://github.com/",
+      "instagram": "https://www.instagram.com/"
     }
   },
   {
-    "id": "vice-president",
-    "name": "Member Name",
+    "id": "ahmed-ben-salah",
+    "name": "Ahmed Ben Salah",
     "role": "Vice President",
-    "photo": "/images/members/placeholder.svg",
-    "bio": "Coordinates events and team operations.",
+    "team": "Board",
+    "bio": "Coordinates events and keeps every team moving in sync.",
     "socials": {
-      "instagram": "https://www.instagram.com/",
+      "linkedin": "https://www.linkedin.com/",
+      "instagram": "https://www.instagram.com/"
+    }
+  },
+  {
+    "id": "sarra-gharbi",
+    "name": "Sarra Gharbi",
+    "role": "Secretary General",
+    "team": "Board",
+    "bio": "Handles communication, memberships, and club logistics.",
+    "socials": {
+      "linkedin": "https://www.linkedin.com/"
+    }
+  },
+  {
+    "id": "omar-jaziri",
+    "name": "Omar Jaziri",
+    "role": "Dev Lead",
+    "team": "Dev Team",
+    "photo": "/images/members/placeholder.svg",
+    "bio": "Runs coding workshops and mentors project teams.",
+    "socials": {
       "linkedin": "https://www.linkedin.com/",
       "github": "https://github.com/"
     }
   },
   {
-    "id": "tech-lead",
-    "name": "Member Name",
-    "role": "Tech Lead",
-    "photo": "/images/members/placeholder.svg",
-    "bio": "Runs workshops and mentors project teams.",
+    "id": "nour-hammami",
+    "name": "Nour Hammami",
+    "role": "Frontend Developer",
+    "team": "Dev Team",
+    "bio": "Builds interfaces with React and a love for detail.",
     "socials": {
-      "instagram": "https://www.instagram.com/",
+      "github": "https://github.com/",
+      "instagram": "https://www.instagram.com/"
+    }
+  },
+  {
+    "id": "karim-mansour",
+    "name": "Karim Mansour",
+    "role": "Backend Developer",
+    "team": "Dev Team",
+    "bio": "APIs, databases, and making things fast.",
+    "socials": {
       "linkedin": "https://www.linkedin.com/",
       "github": "https://github.com/"
     }
   },
   {
-    "id": "design-lead",
-    "name": "Member Name",
+    "id": "lina-chaabane",
+    "name": "Lina Chaabane",
     "role": "Design Lead",
-    "photo": "/images/members/placeholder.svg",
-    "bio": "Crafts the club brand and product design.",
+    "team": "Design Team",
+    "bio": "Shapes the club brand and product design.",
     "socials": {
-      "instagram": "https://www.instagram.com/",
       "linkedin": "https://www.linkedin.com/",
-      "github": "https://github.com/"
+      "instagram": "https://www.instagram.com/"
+    }
+  },
+  {
+    "id": "rami-ayari",
+    "name": "Rami Ayari",
+    "role": "UI/UX Designer",
+    "team": "Design Team",
+    "bio": "Turns ideas into clean, usable interfaces.",
+    "socials": {
+      "instagram": "https://www.instagram.com/"
     }
   }
 ]

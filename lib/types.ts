@@ -79,6 +79,22 @@ export interface ClubEvent {
   link?: { href: string; label?: string };
 }
 
+export interface GalleryImage {
+  id: string;
+  /** Path inside /public, e.g. "/images/gallery/hackathon-01.jpg" */
+  src: string;
+  /** Intrinsic size in pixels. Used to keep the aspect ratio and avoid layout shift. */
+  width: number;
+  height: number;
+  /** Describes what is in the photo, for screen readers. */
+  alt: string;
+  caption: string;
+  /** Optional event reference, e.g. "Campus Hack 2025" */
+  event?: string;
+  /** Optional "YYYY-MM-DD" */
+  date?: string;
+}
+
 export interface Member {
   id: string;
   name: string;

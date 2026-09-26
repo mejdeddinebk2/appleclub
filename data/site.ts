@@ -14,6 +14,8 @@ export const siteConfig = {
     'Apple Club is the official tech club of EPI Digital School (IMSET Sousse): a community of students who learn, build, and share through workshops, hackathons, and real projects.',
   mission:
     'We bring together students who love technology to learn by doing, share knowledge, and turn bold ideas into real products.',
+  vision:
+    'To be the place where every EPI Digital School student can discover technology, grow their skills, and launch projects that make an impact.',
   url: (process.env.NEXT_PUBLIC_SITE_URL || fallbackUrl).replace(/\/$/, ''),
   keywords: [
     'Apple Club',

@@ -25,6 +25,20 @@ export interface Stat {
   label: string;
 }
 
+export type ValueIcon = FeatureIcon | 'book' | 'sparkles';
+
+export interface Value {
+  icon: ValueIcon;
+  title: string;
+  description: string;
+}
+
+export interface Milestone {
+  year: string;
+  title: string;
+  description: string;
+}
+
 export interface Member {
   id: string;
   name: string;

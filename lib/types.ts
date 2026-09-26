@@ -61,6 +61,24 @@ export interface FaqItem {
   answer: string;
 }
 
+export type EventType = 'Workshop' | 'Hackathon' | 'Meetup' | 'Talk';
+
+/** Named ClubEvent to avoid clashing with the DOM `Event` type. */
+export interface ClubEvent {
+  id: string;
+  title: string;
+  /** Local date in Tunisia, "YYYY-MM-DD" */
+  date: string;
+  /** Local 24h time, "HH:MM" */
+  startTime: string;
+  endTime?: string;
+  location: string;
+  description: string;
+  type: EventType;
+  /** Internal ("/contact") or external ("https://...") link, e.g. a registration form. */
+  link?: { href: string; label?: string };
+}
+
 export interface Member {
   id: string;
   name: string;

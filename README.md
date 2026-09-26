@@ -46,6 +46,7 @@ public/              Logo and images
 - **Members:** `data/members.json`. Each entry has `id`, `name`, `role`, `team` (e.g. `Board`, `Dev Team`, `Design Team`), optional `photo` (put files in `public/images/members/`; omit it for an initials avatar), optional `bio`, and `socials` (`linkedin`, `github`, `instagram`). Team order and blurbs live in `data/members.ts`.
 - **Activities:** `data/activities.ts`. Each entry has `id`, `title`, `date` (`YYYY-MM-DD`), `category` (`Workshop`, `Hackathon`, or `Project`), `description`, and optional `image` (in `public/images/activities/`), `imageAlt`, `link`, and `tags`.
 - **Contact FAQ:** `data/contact.ts`. The contact form does not send anything yet: wire it to a backend in `components/contact/ContactForm.tsx` (see the `TODO`).
+- **Events:** `data/events.ts`. Each entry has `id`, `title`, `date` (`YYYY-MM-DD`), `startTime`/`endTime` (`HH:MM`, Tunisia time), `location`, `type` (`Workshop`, `Hackathon`, `Meetup`, or `Talk`), `description`, and an optional `link`. Events move to "Past" automatically once they end, even on the static build.
 - **Logo:** replace `public/logo.svg` and `app/icon.svg` (favicon).
 - **Social preview image:** add a 1200x630 `app/opengraph-image.png`. Next.js picks it up automatically.
 

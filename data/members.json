@@ -1,91 +1,134 @@
 [
   {
-    "id": "yasmine-trabelsi",
-    "name": "Yasmine Trabelsi",
-    "role": "President",
+    "id": "nour-mechri",
+    "name": "Nour Mechri",
+    "role": "Présidente",
     "team": "Board",
     "photo": "/images/members/placeholder.svg",
-    "bio": "Leads the club vision, partnerships, and big-picture planning.",
+    "bio": "3ème année Info, tronc commun anglais.",
     "socials": {
-      "linkedin": "https://www.linkedin.com/",
-      "github": "https://github.com/",
-      "instagram": "https://www.instagram.com/"
-    }
-  },
-  {
-    "id": "ahmed-ben-salah",
-    "name": "Ahmed Ben Salah",
-    "role": "Vice President",
-    "team": "Board",
-    "bio": "Coordinates events and keeps every team moving in sync.",
-    "socials": {
-      "linkedin": "https://www.linkedin.com/",
-      "instagram": "https://www.instagram.com/"
-    }
-  },
-  {
-    "id": "sarra-gharbi",
-    "name": "Sarra Gharbi",
-    "role": "Secretary General",
-    "team": "Board",
-    "bio": "Handles communication, memberships, and club logistics.",
-    "socials": {
+      "instagram": "https://www.instagram.com/",
       "linkedin": "https://www.linkedin.com/"
     }
   },
   {
-    "id": "omar-jaziri",
-    "name": "Omar Jaziri",
-    "role": "Dev Lead",
+    "id": "yoser-sassi",
+    "name": "Yoser Sassi",
+    "role": "Vice-Présidente",
+    "team": "Board",
+    "photo": "/images/members/placeholder.svg",
+    "bio": "3ème année Info, tronc commun anglais.",
+    "socials": {
+      "instagram": "https://www.instagram.com/",
+      "linkedin": "https://www.linkedin.com/"
+    }
+  },
+  {
+    "id": "tasnim-jarray",
+    "name": "Tasnim Jarray",
+    "role": "Secrétaire Générale",
+    "team": "Board",
+    "photo": "/images/members/placeholder.svg",
+    "bio": "3ème année Licence Génie Logiciel.",
+    "socials": {
+      "instagram": "https://www.instagram.com/",
+      "linkedin": "https://www.linkedin.com/"
+    }
+  },
+  {
+    "id": "adem-abdessamed",
+    "name": "Adem Abdessamed",
+    "role": "Trésorier",
+    "team": "Board",
+    "photo": "/images/members/placeholder.svg",
+    "bio": "5ème année Cyber Security.",
+    "socials": {
+      "instagram": "https://www.instagram.com/",
+      "linkedin": "https://www.linkedin.com/"
+    }
+  },
+  {
+    "id": "tasnim-bououd",
+    "name": "Tasnim Bououd",
+    "role": "RH",
+    "team": "Human Resources",
+    "photo": "/images/members/placeholder.svg",
+    "bio": "3ème année Info, tronc commun anglais.",
+    "socials": {
+      "instagram": "https://www.instagram.com/",
+      "linkedin": "https://www.linkedin.com/"
+    }
+  },
+  {
+    "id": "narjes-said",
+    "name": "Narjes Said",
+    "role": "RH",
+    "team": "Human Resources",
+    "photo": "/images/members/placeholder.svg",
+    "bio": "3ème année Info, tronc commun français.",
+    "socials": {
+      "instagram": "https://www.instagram.com/",
+      "linkedin": "https://www.linkedin.com/"
+    }
+  },
+  {
+    "id": "wael-lakhal",
+    "name": "Wael Lakhal",
+    "role": "Responsable Design",
+    "team": "Design Team",
+    "photo": "/images/members/placeholder.svg",
+    "bio": "5ème année Cyber Security.",
+    "socials": {
+      "instagram": "https://www.instagram.com/",
+      "linkedin": "https://www.linkedin.com/"
+    }
+  },
+  {
+    "id": "rayen-alibi",
+    "name": "Rayen Alibi",
+    "role": "Responsable Media",
+    "team": "Media Team",
+    "photo": "/images/members/placeholder.svg",
+    "bio": "3ème année Licence Génie Logiciel.",
+    "socials": {
+      "instagram": "https://www.instagram.com/",
+      "linkedin": "https://www.linkedin.com/"
+    }
+  },
+  {
+    "id": "wejden-braham",
+    "name": "Wejden Braham",
+    "role": "Responsable Organisation",
+    "team": "Organisation Team",
+    "photo": "/images/members/placeholder.svg",
+    "bio": "2ème année Prépa TIC.",
+    "socials": {
+      "instagram": "https://www.instagram.com/",
+      "linkedin": "https://www.linkedin.com/"
+    }
+  },
+  {
+    "id": "mejdeddine-boukadida",
+    "name": "Mejdeddine Boukadida",
+    "role": "Responsable Technique",
     "team": "Dev Team",
     "photo": "/images/members/placeholder.svg",
-    "bio": "Runs coding workshops and mentors project teams.",
-    "socials": {
-      "linkedin": "https://www.linkedin.com/",
-      "github": "https://github.com/"
-    }
-  },
-  {
-    "id": "nour-hammami",
-    "name": "Nour Hammami",
-    "role": "Frontend Developer",
-    "team": "Dev Team",
-    "bio": "Builds interfaces with React and a love for detail.",
+    "bio": "5ème année.",
     "socials": {
       "github": "https://github.com/",
-      "instagram": "https://www.instagram.com/"
+      "linkedin": "https://www.linkedin.com/"
     }
   },
   {
-    "id": "karim-mansour",
-    "name": "Karim Mansour",
-    "role": "Backend Developer",
-    "team": "Dev Team",
-    "bio": "APIs, databases, and making things fast.",
+    "id": "firas-hakima",
+    "name": "Firas Hakima",
+    "role": "Responsable Sponsoring",
+    "team": "Sponsoring Team",
+    "photo": "/images/members/placeholder.svg",
+    "bio": "5ème année.",
     "socials": {
-      "linkedin": "https://www.linkedin.com/",
-      "github": "https://github.com/"
-    }
-  },
-  {
-    "id": "lina-chaabane",
-    "name": "Lina Chaabane",
-    "role": "Design Lead",
-    "team": "Design Team",
-    "bio": "Shapes the club brand and product design.",
-    "socials": {
-      "linkedin": "https://www.linkedin.com/",
-      "instagram": "https://www.instagram.com/"
-    }
-  },
-  {
-    "id": "rami-ayari",
-    "name": "Rami Ayari",
-    "role": "UI/UX Designer",
-    "team": "Design Team",
-    "bio": "Turns ideas into clean, usable interfaces.",
-    "socials": {
-      "instagram": "https://www.instagram.com/"
+      "instagram": "https://www.instagram.com/",
+      "linkedin": "https://www.linkedin.com/"
     }
   }
 ]

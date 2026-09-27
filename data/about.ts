@@ -1,34 +1,37 @@
 import type { Milestone, Value } from '@/lib/types';
 
-// TODO: sample content. Replace the year, story, and milestones with the club's real history.
 export const foundedYear = '2023';
+export const founder = 'Aziz Dely';
 
 export const story: string[] = [
-  'Apple Club started with a simple idea: students at EPI Digital School who loved technology deserved a place to build things together, beyond the classroom.',
-  'What began as a handful of friends sharing tips and side projects quickly grew into a community that runs workshops, joins hackathons, and ships real products.',
-  'Today, Apple Club is the official tech club of EPI Digital School (IMSET Sousse), open to every student who is curious about code, design, and innovation, whatever their level.',
+  'Apple Club EPI is a student-led technology club at EPI Sousse, founded by Aziz Dely in September 2023.',
+  'The club brings together students passionate about technology, innovation, and the digital world. Our mission is to create a dynamic environment where students can learn, create, share, and grow through workshops, training sessions, tech events, challenges, and collaborative projects.',
+  'We focus on developing both technical and professional skills, while encouraging creativity, teamwork, innovation, and connections with professionals and the tech community.',
+  'From programming and artificial intelligence to cybersecurity, web development, entrepreneurship, and emerging technologies, Apple Club EPI offers a space for students to explore their interests and turn ideas into projects.',
+  '3 years of learning, innovation, and community — and we\u2019re just getting started.',
 ];
 
+// TODO: refine exact dates/titles for each milestone once confirmed with the board.
 export const milestones: Milestone[] = [
   {
     year: '2023',
-    title: 'The first meetup',
-    description: 'A small group of students gathers to share projects, ideas, and a love for great technology.',
+    title: 'Apple Club EPI is founded',
+    description: 'Aziz Dely launches the club at EPI Sousse, bringing together the first group of tech-passionate students.',
   },
   {
     year: '2024',
-    title: 'Official club status',
-    description: 'Apple Club becomes the official tech club of EPI Digital School and runs its first workshops.',
+    title: 'Growing community',
+    description: 'The club expands its activities with regular workshops, training sessions, and tech events across AI, cybersecurity, and web development.',
   },
   {
     year: '2025',
-    title: 'Our first hackathon',
-    description: 'Teams of members build working prototypes in a single weekend.',
+    title: 'New board, new momentum',
+    description: 'A new board takes over, led by Nour Mechri, expanding the club\u2019s projects, challenges, and partnerships.',
   },
   {
     year: 'Today',
-    title: 'A growing community',
-    description: 'More members, more projects, and more ways to learn, build, and share.',
+    title: '3 years strong',
+    description: 'A growing community of students learning, building, and sharing \u2014 and just getting started.',
   },
 ];
 
@@ -36,21 +39,21 @@ export const values: Value[] = [
   {
     icon: 'bulb',
     title: 'Innovation',
-    description: 'We chase bold ideas and are not afraid to try, fail, and try again.',
+    description: 'We chase bold ideas across AI, cybersecurity, web development, and emerging technologies.',
   },
   {
     icon: 'users',
     title: 'Community',
-    description: 'Everyone is welcome. We grow faster when we help each other.',
+    description: 'A dynamic environment where every student passionate about tech is welcome.',
   },
   {
     icon: 'book',
     title: 'Learning',
-    description: 'We learn by doing, through workshops, mentoring, and real projects.',
+    description: 'We learn by doing, through workshops, training sessions, and collaborative projects.',
   },
   {
     icon: 'sparkles',
-    title: 'Craftsmanship',
-    description: 'We care about the details, from clean code to thoughtful design.',
+    title: 'Professionalism',
+    description: 'We build technical and professional skills, and connect with professionals and the tech community.',
   },
 ];

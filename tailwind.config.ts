@@ -39,11 +39,16 @@ const config: Config = {
           '0%, 100%': { transform: 'translate(-50%, -50%) scale(1)' },
           '50%': { transform: 'translate(-50%, -54%) scale(1.06)' },
         },
+        'float-slow': {
+          '0%, 100%': { transform: 'translate(-50%, -50%) scale(1)' },
+          '50%': { transform: 'translate(-50%, -46%) scale(1.08)' },
+        },
       },
       animation: {
         'fade-up': 'fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both',
         'fade-in': 'fade-in 0.3s ease-out both',
         float: 'float 14s ease-in-out infinite',
+        'float-slow': 'float-slow 18s ease-in-out infinite',
       },
     },
   },

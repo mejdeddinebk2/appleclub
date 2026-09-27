@@ -1,3 +1,4 @@
+import { AdvisorSpotlight } from '@/components/about/AdvisorSpotlight';
 import { JoinCta } from '@/components/home/JoinCta';
 import { MemberCard } from '@/components/members/MemberCard';
 import { Reveal } from '@/components/ui/Reveal';
@@ -44,6 +45,10 @@ export default function MembersPage() {
             </nav>
           </Reveal>
         )}
+      </Section>
+
+      <Section className="pt-0 sm:pt-0">
+        <AdvisorSpotlight />
       </Section>
 
       {groups.length === 0 ? (

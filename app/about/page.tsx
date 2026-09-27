@@ -10,7 +10,7 @@ import { createMetadata } from '@/lib/metadata';
 export const metadata = createMetadata({
   title: 'About',
   description:
-    'The mission, vision, founding story, and values of Apple Club, the official tech club of EPI Digital School (IMSET Sousse).',
+    'The mission, vision, founding story, and values of Apple Club EPI, the official iOS development club of EPI Sup (Sousse, Tunisia).',
   path: '/about',
 });
 
@@ -23,13 +23,15 @@ export default function AboutPage() {
             as="h1"
             eyebrow="About"
             title="Built by students, for students."
-            description="Apple Club is where curiosity meets craft: a community at EPI Digital School that learns, builds, and shares technology together."
+            description="Apple Club EPI is where curiosity meets craft: a community at EPI Sup that learns, builds, and shares iOS technology together."
           />
         </Reveal>
       </Section>
+
       <MissionVision />
       <OurStory />
       <Values />
+
       <JoinCta />
     </>
   );

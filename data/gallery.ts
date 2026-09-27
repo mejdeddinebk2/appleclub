@@ -1,65 +1,14 @@
 import type { GalleryImage } from '@/lib/types';
 
-// TODO: sample data with placeholder images. Put real photos in public/images/gallery/
-// and update src, width, height, alt, and caption. Keep width/height equal to the real pixel size.
+// TODO: add more real photos to public/images/gallery/ and list them here.
 export const galleryImages: GalleryImage[] = [
   {
-    id: 'campus-hack-2025-teams',
-    src: '/images/gallery/placeholder-landscape-1.svg',
-    width: 1600,
-    height: 1067,
-    alt: 'Teams working on laptops during Campus Hack 2025',
-    caption: 'Teams at work during Campus Hack 2025',
-    event: 'Campus Hack 2025',
-    date: '2025-04-19',
-  },
-  {
-    id: 'swiftui-workshop-speaker',
-    src: '/images/gallery/placeholder-portrait-1.svg',
-    width: 1067,
-    height: 1600,
-    alt: 'A club member presenting SwiftUI code on a large screen',
-    caption: 'Live coding at the SwiftUI workshop',
-    event: 'Building iOS Apps with SwiftUI',
-    date: '2025-05-07',
-  },
-  {
-    id: 'club-meetup-group',
-    src: '/images/gallery/placeholder-square-1.svg',
-    width: 1600,
-    height: 1600,
-    alt: 'Club members smiling together for a group photo',
-    caption: 'The team after our spring meetup',
-    date: '2025-03-20',
-  },
-  {
-    id: 'intro-web-workshop-room',
-    src: '/images/gallery/placeholder-landscape-2.svg',
-    width: 1600,
-    height: 1067,
-    alt: 'Students following along on their laptops in a classroom',
-    caption: 'First steps in HTML and CSS',
-    event: 'Intro to Web Development',
-    date: '2025-03-12',
-  },
-  {
-    id: 'campus-hack-2025-pitch',
-    src: '/images/gallery/placeholder-portrait-2.svg',
-    width: 1067,
-    height: 1600,
-    alt: 'A team pitching their prototype to the jury',
-    caption: 'Final pitches in front of the jury',
-    event: 'Campus Hack 2025',
-    date: '2025-04-19',
-  },
-  {
-    id: 'campus-hack-2025-winners',
-    src: '/images/gallery/placeholder-landscape-3.svg',
-    width: 1600,
-    height: 1067,
-    alt: 'The winning team holding their trophy on stage',
-    caption: 'And the winners are...',
-    event: 'Campus Hack 2025',
-    date: '2025-04-19',
+    id: 'epi-survival-conference-crowd',
+    src: '/images/gallery/epi-survival-conference-crowd.jpg',
+    width: 1170,
+    height: 779,
+    alt: 'Apple Club EPI members and guests in the EPI auditorium during a conference',
+    caption: 'Apple Club EPI at EPI Digital School',
+    event: 'EPI Digital School',
   },
 ];

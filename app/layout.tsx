@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import { Footer } from '@/components/layout/Footer';
 import { Navbar } from '@/components/layout/Navbar';
+import { CursorGlow } from '@/components/ui/CursorGlow';
+import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { siteConfig } from '@/data/site';
 import './globals.css';
 
@@ -61,6 +63,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Skip to content
         </a>
         <Navbar />
+        <ScrollProgress />
+        <CursorGlow />
         <main id="main" className="pt-14">
           {children}
         </main>

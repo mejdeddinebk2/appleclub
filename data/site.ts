@@ -32,6 +32,10 @@ export const siteConfig = {
     'mobile apps',
     'Tunisia',
   ],
+  joinFormUrl:
+    'https://docs.google.com/forms/d/e/1FAIpQLSeXfjkXset6HaqGOCG68DOyrRbLxFA6HEhW5lOTstUt2K_Qsw/viewform?embedded=true',
+  joinFormUrlDirect:
+    'https://docs.google.com/forms/d/e/1FAIpQLSeXfjkXset6HaqGOCG68DOyrRbLxFA6HEhW5lOTstUt2K_Qsw/viewform',
 };
 
 export const navItems: NavItem[] = [
@@ -52,7 +56,8 @@ export const features: Feature[] = [
   {
     icon: 'code',
     title: 'Workshops iOS',
-    description: 'Sessions pratiques sur Swift, SwiftUI, et le développement mobile Apple, animées par et pour les étudiants.',
+    description:
+      'Sessions pratiques sur Swift, SwiftUI, et le développement mobile Apple, animées par et pour les étudiants.',
     href: '/activities',
   },
   {
@@ -73,6 +78,22 @@ export const features: Feature[] = [
     description: "Un réseau accueillant d'esprits curieux, de mentors, et de futurs développeurs iOS.",
     href: '/members',
   },
+];
+
+// Technologies the club works with, shown as a scrolling strip on the homepage.
+export const techStack: string[] = [
+  'Swift',
+  'SwiftUI',
+  'Xcode',
+  'UIKit',
+  'iOS',
+  'ARKit',
+  'CoreData',
+  'WidgetKit',
+  'Combine',
+  'CloudKit',
+  'TestFlight',
+  'App Store Connect',
 ];
 
 // Sample figures: update them with the club's real numbers.

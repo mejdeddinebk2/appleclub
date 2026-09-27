@@ -1,3 +1,4 @@
+import { AnimatedNumber } from '@/components/ui/AnimatedNumber';
 import { Reveal } from '@/components/ui/Reveal';
 import { Section } from '@/components/ui/Section';
 import { stats } from '@/data/site';
@@ -10,9 +11,11 @@ export function Stats() {
         {stats.map((stat, i) => (
           <Reveal key={stat.label} delay={i * 80} className="text-center">
             <p className="bg-gradient-to-b from-neutral-900 to-neutral-500 bg-clip-text text-5xl font-semibold tracking-tight text-transparent sm:text-6xl dark:from-white dark:to-neutral-500">
-              {stat.value}
+              <AnimatedNumber value={stat.value} />
             </p>
-            <p className="mt-2 text-sm font-medium text-neutral-500 sm:text-base dark:text-neutral-400">{stat.label}</p>
+            <p className="mt-2 text-sm font-medium text-neutral-500 sm:text-base dark:text-neutral-400">
+              {stat.label}
+            </p>
           </Reveal>
         ))}
       </div>

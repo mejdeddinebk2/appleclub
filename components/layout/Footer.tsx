@@ -14,16 +14,31 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-4">
           <div className="md:col-span-2">
             <Link href="/" className="inline-flex items-center gap-2.5">
-              <Image src={asset('/logo.svg')} alt="" width={32} height={32} unoptimized className="h-8 w-8" />
+              <Image
+                src={asset('/images/logo-apple-club.png')}
+                alt={`${siteConfig.name} logo`}
+                width={32}
+                height={32}
+                className="h-8 w-8 object-contain"
+              />
               <span className="text-lg font-semibold tracking-tight">{siteConfig.name}</span>
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
               {siteConfig.description}
             </p>
-            <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-neutral-200 px-3 py-1 text-xs font-medium text-neutral-600 dark:border-neutral-800 dark:text-neutral-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
-              {siteConfig.school} · {siteConfig.campus}
-            </p>
+            <div className="mt-6 flex items-center gap-3">
+              <Image
+                src={asset('/images/logo-epi-sup.png')}
+                alt="EPI Sup logo"
+                width={80}
+                height={28}
+                className="h-6 w-auto object-contain dark:brightness-0 dark:invert"
+              />
+              <p className="inline-flex items-center gap-2 rounded-full border border-neutral-200 px-3 py-1 text-xs font-medium text-neutral-600 dark:border-neutral-800 dark:text-neutral-400">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
+                {siteConfig.school} · {siteConfig.campus}
+              </p>
+            </div>
           </div>
 
           <div>

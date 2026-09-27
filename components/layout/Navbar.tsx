@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CloseIcon, MenuIcon } from '@/components/icons';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { navItems, siteConfig } from '@/data/site';
@@ -13,14 +13,30 @@ export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const [hovered, setHovered] = useState<{ left: number; width: number } | null>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+  const itemRefs = useRef<Record<string, HTMLLIElement | null>>({});
 
   // Close the mobile menu on navigation
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
 
+  // Backdrop appears once scrolled; the bar itself hides on scroll-down past the
+  // fold and reappears on scroll-up, so content gets more room without losing nav.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      if (y > lastY + 4 && y > 160) {
+        setHidden(true);
+      } else if (y < lastY - 4 || y < 160) {
+        setHidden(false);
+      }
+      lastY = y;
+    };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -42,13 +58,23 @@ export function Navbar() {
 
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 
+  const handleEnter = (href: string) => {
+    const el = itemRefs.current[href];
+    const list = listRef.current;
+    if (!el || !list) return;
+    const elRect = el.getBoundingClientRect();
+    const listRect = list.getBoundingClientRect();
+    setHovered({ left: elRect.left - listRect.left, width: elRect.width });
+  };
+
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300',
+        'nav-floating fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300',
         scrolled || open
           ? 'border-neutral-200/70 bg-white/75 backdrop-blur-xl backdrop-saturate-150 dark:border-neutral-800/70 dark:bg-black/70'
           : 'border-transparent bg-transparent',
+        hidden && !open && 'nav-hidden',
       )}
     >
       <nav aria-label="Main" className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6 sm:px-8">
@@ -57,24 +83,48 @@ export function Navbar() {
           aria-label={`${siteConfig.name} home`}
           className="flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
-          <Image src={asset('/logo.svg')} alt="" width={28} height={28} unoptimized className="h-7 w-7" />
+          <Image
+            src={asset('/images/logo-apple-club.png')}
+            alt=""
+            width={28}
+            height={28}
+            className="h-7 w-7 object-contain"
+          />
           <span className="text-[15px] font-semibold tracking-tight">{siteConfig.name}</span>
         </Link>
 
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="relative hidden items-center gap-1 md:flex" ref={listRef} onMouseLeave={() => setHovered(null)}>
+          <span
+            aria-hidden
+            className="pointer-events-none absolute inset-y-0.5 rounded-full bg-neutral-900/[0.06] transition-all duration-300 ease-out dark:bg-white/10"
+            style={{
+              left: hovered?.left ?? 0,
+              width: hovered?.width ?? 0,
+              opacity: hovered ? 1 : 0,
+            }}
+          />
           {navItems.map((item) => (
-            <li key={item.href}>
+            <li
+              key={item.href}
+              ref={(el) => {
+                itemRefs.current[item.href] = el;
+              }}
+              onMouseEnter={() => handleEnter(item.href)}
+            >
               <Link
                 href={item.href}
                 aria-current={isActive(item.href) ? 'page' : undefined}
                 className={cn(
-                  'rounded-full px-3 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
+                  'relative rounded-full px-3 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
                   isActive(item.href)
                     ? 'font-medium text-neutral-900 dark:text-white'
                     : 'text-neutral-500 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white',
                 )}
               >
                 {item.label}
+                {isActive(item.href) && (
+                  <span className="absolute inset-x-3 -bottom-px h-[2px] animate-fade-in rounded-full bg-accent" />
+                )}
               </Link>
             </li>
           ))}

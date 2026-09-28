@@ -1,3 +1,4 @@
+import { GalleryCover } from '@/components/gallery/GalleryCover';
 import { GalleryGrid } from '@/components/gallery/GalleryGrid';
 import { JoinCta } from '@/components/home/JoinCta';
 import { Reveal } from '@/components/ui/Reveal';
@@ -28,6 +29,7 @@ export default function GalleryPage() {
       </Section>
 
       <Section className="pt-0 sm:pt-0">
+        <GalleryCover />
         <GalleryGrid images={galleryImages} />
       </Section>
 

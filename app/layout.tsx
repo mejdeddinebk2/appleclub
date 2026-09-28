@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
+import { ChatWidget } from '@/components/chat/ChatWidget';
 import { Footer } from '@/components/layout/Footer';
 import { Navbar } from '@/components/layout/Navbar';
 import { CursorGlow } from '@/components/ui/CursorGlow';
@@ -69,6 +70,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           {children}
         </main>
         <Footer />
+        <ChatWidget />
       </body>
     </html>
   );

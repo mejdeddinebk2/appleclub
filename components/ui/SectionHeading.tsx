@@ -8,6 +8,8 @@ interface SectionHeadingProps {
   align?: 'left' | 'center';
   as?: 'h1' | 'h2';
   className?: string;
+  /** Chapter index, e.g. "01" — rendered as "CH.01" above the eyebrow. */
+  chapter?: string;
 }
 
 export function SectionHeading({
@@ -17,9 +19,20 @@ export function SectionHeading({
   align = 'center',
   as: Tag = 'h2',
   className,
+  chapter,
 }: SectionHeadingProps) {
   return (
     <div className={cn('max-w-3xl', align === 'center' ? 'mx-auto text-center' : 'text-left', className)}>
+      {chapter && (
+        <p
+          className={cn(
+            'mb-3 font-mono text-xs tracking-[0.35em] text-neutral-400 dark:text-neutral-600',
+            align === 'center' && 'text-center',
+          )}
+        >
+          CH.{chapter} <span className="text-neutral-300 dark:text-neutral-700">/ 06</span>
+        </p>
+      )}
       {eyebrow && (
         <p
           className={cn(

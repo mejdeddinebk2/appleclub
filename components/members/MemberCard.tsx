@@ -3,12 +3,13 @@ import { SocialLinks } from '@/components/ui/SocialLinks';
 import type { Member, SocialLink, SocialPlatform } from '@/lib/types';
 import { MemberAvatar } from './MemberAvatar';
 
-const platformOrder: SocialPlatform[] = ['linkedin', 'github', 'instagram', 'facebook', 'discord'];
+const platformOrder: SocialPlatform[] = ['linkedin', 'github', 'instagram', 'tiktok', 'facebook', 'discord'];
 
 const platformLabels: Record<SocialPlatform, string> = {
   linkedin: 'LinkedIn',
   github: 'GitHub',
   instagram: 'Instagram',
+  tiktok: 'TikTok',
   facebook: 'Facebook',
   discord: 'Discord',
 };

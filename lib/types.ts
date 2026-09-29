@@ -1,4 +1,4 @@
-export type SocialPlatform = 'instagram' | 'discord' | 'linkedin' | 'github' | 'facebook';
+export type SocialPlatform = 'instagram' | 'discord' | 'linkedin' | 'github' | 'facebook' | 'tiktok';
 
 export interface NavItem {
   label: string;

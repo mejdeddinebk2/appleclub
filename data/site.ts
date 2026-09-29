@@ -20,6 +20,7 @@ export const siteConfig = {
   teacherAdvisor: {
     name: 'Mme. Nahla Baccar',
     role: 'Enseignante responsable',
+    instagram: 'https://www.instagram.com/nahla.bkk',
   },
   url: (process.env.NEXT_PUBLIC_SITE_URL || fallbackUrl).replace(/\/$/, ''),
   keywords: [
@@ -49,6 +50,7 @@ export const navItems: NavItem[] = [
 
 export const socialLinks: SocialLink[] = [
   { platform: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/apple_epi_club/' },
+  { platform: 'tiktok', label: 'TikTok', href: 'https://www.tiktok.com/@apple_epi' },
   { platform: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/100077138213374/?locale=fr_FR' },
 ];
 

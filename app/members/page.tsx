@@ -1,6 +1,7 @@
 import { AdvisorSpotlight } from '@/components/about/AdvisorSpotlight';
 import { JoinCta } from '@/components/home/JoinCta';
 import { MemberCard } from '@/components/members/MemberCard';
+import { ChapterNav } from '@/components/ui/ChapterNav';
 import { Reveal } from '@/components/ui/Reveal';
 import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
@@ -24,6 +25,7 @@ export default function MembersPage() {
         <Reveal>
           <SectionHeading
             as="h1"
+            chapter="02"
             eyebrow="Members"
             title="The people behind the club."
             description="Builders, designers, and organizers who make Apple Club happen, one workshop and one project at a time."
@@ -89,6 +91,8 @@ export default function MembersPage() {
           );
         })
       )}
+
+      <ChapterNav current="02" />
 
       <div className="pt-12 sm:pt-16">
         <JoinCta />

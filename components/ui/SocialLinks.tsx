@@ -1,5 +1,13 @@
 import type { ComponentType } from 'react';
-import { DiscordIcon, FacebookIcon, GitHubIcon, InstagramIcon, LinkedInIcon, type IconProps } from '@/components/icons';
+import {
+  DiscordIcon,
+  FacebookIcon,
+  GitHubIcon,
+  InstagramIcon,
+  LinkedInIcon,
+  TikTokIcon,
+  type IconProps,
+} from '@/components/icons';
 import { socialLinks } from '@/data/site';
 import type { SocialLink, SocialPlatform } from '@/lib/types';
 import { cn } from '@/lib/utils';
@@ -10,6 +18,7 @@ export const socialIcons: Record<SocialPlatform, ComponentType<IconProps>> = {
   linkedin: LinkedInIcon,
   github: GitHubIcon,
   facebook: FacebookIcon,
+  tiktok: TikTokIcon,
 };
 
 interface SocialLinksProps {

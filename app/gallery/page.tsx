@@ -4,6 +4,7 @@ import { JoinCta } from '@/components/home/JoinCta';
 import { Reveal } from '@/components/ui/Reveal';
 import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { ChapterNav } from '@/components/ui/ChapterNav';
 import { galleryImages } from '@/data/gallery';
 import { createMetadata } from '@/lib/metadata';
 
@@ -21,6 +22,7 @@ export default function GalleryPage() {
         <Reveal>
           <SectionHeading
             as="h1"
+            chapter="05"
             eyebrow="Gallery"
             title="Moments we made."
             description="Snapshots from our workshops, hackathons, and meetups. Click any photo to see it larger."
@@ -32,6 +34,8 @@ export default function GalleryPage() {
         <GalleryCover />
         <GalleryGrid images={galleryImages} />
       </Section>
+
+<ChapterNav current="05" />
 
       <JoinCta />
     </>

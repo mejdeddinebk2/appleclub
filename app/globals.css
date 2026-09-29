@@ -150,6 +150,11 @@
     animation: page-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 
+  /* ⌘K command palette entrance. */
+  .palette-in {
+    animation: palette-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
   /* ---------------------------------------------------------------------
      Cinematic hero scroll-fx: <HeroScrollFx> writes --p (0 → 1) as the hero
      scrolls out of view. Content scales down, lifts and blurs — a premium
@@ -303,6 +308,17 @@
     opacity: 1;
     transform: translateY(0) scale(1);
     filter: blur(0);
+  }
+}
+
+@keyframes palette-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 

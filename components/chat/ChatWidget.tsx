@@ -25,7 +25,7 @@ const GREETING: Message = {
 const QUICK_REPLIES = ['Comment rejoindre le club ?', 'Vos prochains events ?', "C'est quoi Swift ?"];
 
 // Real photos from the club's own gallery.
-const HEADER_PHOTO = '/images/gallery/epi-survival-conference-crowd.jpg'; // cover banner
+const HEADER_PHOTO = '/images/gallery/epi-club-amphitheater-group.jpg'; // cover banner
 const WATERMARK_PHOTO = '/images/gallery/epi-sup-friends.jpg'; // body backdrop — Apple-branded tees, on-theme
 
 /** Small apple-shaped robot mark used as APPLE-EPI's avatar everywhere. */
@@ -123,6 +123,13 @@ export function ChatWidget() {
       return () => clearTimeout(t);
     }
   }, [open]);
+
+  // Lets other UI (e.g. the ⌘K command palette) open the widget without prop drilling.
+  useEffect(() => {
+    const onOpenRequest = () => setOpen(true);
+    window.addEventListener('apple-epi:open-chat', onOpenRequest);
+    return () => window.removeEventListener('apple-epi:open-chat', onOpenRequest);
+  }, []);
 
   // Set up speech recognition (mic input) once, client-side only.
   useEffect(() => {

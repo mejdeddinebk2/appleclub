@@ -4,6 +4,7 @@ import { Card } from '@/components/ui/Card';
 import { Reveal } from '@/components/ui/Reveal';
 import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { ChapterNav } from '@/components/ui/ChapterNav';
 import { SocialLinks } from '@/components/ui/SocialLinks';
 import { siteConfig } from '@/data/site';
 import { createMetadata } from '@/lib/metadata';
@@ -24,6 +25,7 @@ export default function ContactPage() {
         <Reveal>
           <SectionHeading
             as="h1"
+            chapter="06"
             eyebrow="Contact"
             title="Join the club."
             description="Want to become a member, pitch a project, or just say hello? Fill in the form and the team will get back to you."
@@ -97,6 +99,8 @@ export default function ContactPage() {
       </Section>
 
       <Faq />
+
+      <ChapterNav current="06" />
     </>
   );
 }

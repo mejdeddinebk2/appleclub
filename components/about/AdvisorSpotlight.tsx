@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { InstagramIcon } from '@/components/icons';
 import { Reveal } from '@/components/ui/Reveal';
 import { siteConfig } from '@/data/site';
 import { asset } from '@/lib/utils';
@@ -38,6 +39,18 @@ export function AdvisorSpotlight() {
         <p className="mx-auto mt-5 max-w-sm text-pretty leading-relaxed text-neutral-600 dark:text-neutral-400">
           The teacher who backs every workshop, every hackathon night, and every idea we take a chance on.
         </p>
+
+        {siteConfig.teacherAdvisor.instagram && (
+          <a
+            href={siteConfig.teacherAdvisor.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-1.5 rounded-full border border-neutral-200/70 px-4 py-1.5 text-xs font-medium text-neutral-600 transition-colors hover:border-accent/40 hover:text-accent dark:border-neutral-800 dark:text-neutral-400 dark:hover:text-accent-light"
+          >
+            <InstagramIcon className="h-3.5 w-3.5" />
+            Instagram
+          </a>
+        )}
       </div>
     </Reveal>
   );

@@ -3,6 +3,7 @@ import { JoinCta } from '@/components/home/JoinCta';
 import { Reveal } from '@/components/ui/Reveal';
 import { Section } from '@/components/ui/Section';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { ChapterNav } from '@/components/ui/ChapterNav';
 import { events } from '@/data/events';
 import { createMetadata } from '@/lib/metadata';
 
@@ -20,6 +21,7 @@ export default function EventsPage() {
         <Reveal>
           <SectionHeading
             as="h1"
+            chapter="04"
             eyebrow="Events"
             title="What is coming up."
             description="Workshops, hackathons, meetups, and talks. Everyone at EPI Digital School is welcome."
@@ -28,6 +30,8 @@ export default function EventsPage() {
       </Section>
 
       <EventsTimeline events={events} renderedAt={Date.now()} />
+
+<ChapterNav current="04" />
 
       <JoinCta />
     </>

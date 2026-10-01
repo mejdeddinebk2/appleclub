@@ -41,3 +41,7 @@ export function hashString(value: string): number {
   }
   return Math.abs(hash);
 }
+
+/** Tiny neutral placeholder used for next/image blur-up while photos load. */
+export const BLUR_DATA_URL =
+  'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjUiPjxyZWN0IHdpZHRoPSI4IiBoZWlnaHQ9IjUiIGZpbGw9IiM4MDgwODAiIGZpbGwtb3BhY2l0eT0iLjE4Ii8+PC9zdmc+';

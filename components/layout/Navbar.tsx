@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { CloseIcon, MenuIcon } from '@/components/icons';
+import { EGG_EVENT } from '@/components/effects/SiteEffects';
+import { ThemePanel } from '@/components/ui/ThemePanel';
 import { ThemeToggle } from '@/components/ui/ThemeToggle';
 import { navItems, siteConfig } from '@/data/site';
 import { asset, cn } from '@/lib/utils';
@@ -17,6 +19,7 @@ export function Navbar() {
   const [hovered, setHovered] = useState<{ left: number; width: number } | null>(null);
   const listRef = useRef<HTMLUListElement>(null);
   const itemRefs = useRef<Record<string, HTMLLIElement | null>>({});
+  const logoTaps = useRef<{ count: number; last: number }>({ count: 0, last: 0 });
 
   // Close the mobile menu on navigation
   useEffect(() => {
@@ -72,7 +75,7 @@ export function Navbar() {
       className={cn(
         'nav-floating fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300',
         scrolled || open
-          ? 'border-neutral-200/70 bg-white/75 backdrop-blur-xl backdrop-saturate-150 dark:border-neutral-800/70 dark:bg-black/70'
+          ? 'border-white/50 bg-white/60 shadow-[inset_0_-1px_0_rgb(255_255_255/0.5)] backdrop-blur-2xl backdrop-saturate-[1.8] dark:border-white/10 dark:bg-black/55 dark:shadow-[inset_0_-1px_0_rgb(255_255_255/0.06)]'
           : 'border-transparent bg-transparent',
         hidden && !open && 'nav-hidden',
       )}
@@ -81,6 +84,17 @@ export function Navbar() {
         <Link
           href="/"
           aria-label={`${siteConfig.name} home`}
+          onClick={() => {
+            // Easter egg: five quick taps on the logo.
+            const now = Date.now();
+            const t = logoTaps.current;
+            t.count = now - t.last < 600 ? t.count + 1 : 1;
+            t.last = now;
+            if (t.count >= 5) {
+              t.count = 0;
+              window.dispatchEvent(new Event(EGG_EVENT));
+            }
+          }}
           className="flex items-center gap-2.5 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
         >
           <Image
@@ -142,6 +156,7 @@ export function Navbar() {
               ⌘K
             </kbd>
           </button>
+          <ThemePanel />
           <ThemeToggle />
           <Link
             href="/contact"
@@ -163,7 +178,7 @@ export function Navbar() {
       </nav>
 
       {open && (
-        <div id="mobile-menu" className="h-[calc(100svh-3.5rem)] animate-fade-in overflow-y-auto px-6 pb-10 pt-4 md:hidden">
+        <div id="mobile-menu" data-lenis-prevent className="h-[calc(100svh-3.5rem)] animate-fade-in overflow-y-auto px-6 pb-10 pt-4 md:hidden">
           <ul className="space-y-1">
             {navItems.map((item, i) => (
               <li key={item.href} className="animate-fade-up" style={{ animationDelay: `${i * 40}ms` }}>

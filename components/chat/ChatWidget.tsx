@@ -242,7 +242,7 @@ export function ChatWidget() {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-label={open ? 'Fermer le chat APPLE-EPI' : 'Ouvrir le chat APPLE-EPI'}
-        className="group fixed bottom-5 right-5 z-[90] flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-[0_8px_30px_rgba(0,113,227,0.45)] transition-all duration-300 hover:scale-105 hover:bg-accent-hover hover:shadow-[0_10px_40px_rgba(0,113,227,0.6)] active:scale-95 sm:bottom-6 sm:right-6"
+        className="chat-root group fixed bottom-24 right-5 z-[90] flex h-14 w-14 items-center justify-center rounded-full bg-accent text-white shadow-[0_8px_30px_rgb(var(--accent-rgb)_/_0.45)] transition-all duration-300 hover:scale-105 hover:bg-accent-hover hover:shadow-[0_10px_40px_rgb(var(--accent-rgb)_/_0.6)] active:scale-95 md:bottom-6 sm:right-6"
       >
         <span className="absolute inset-0 -z-10 animate-[pulse-ring_2.4s_ease-out_infinite] rounded-full bg-accent/40" />
         {open ? (
@@ -274,7 +274,7 @@ export function ChatWidget() {
       {/* Chat panel */}
       <div
         style={{ transformOrigin: 'bottom right' }}
-        className={`fixed bottom-24 right-5 z-[90] flex w-[92vw] max-w-sm flex-col overflow-hidden rounded-3xl border border-black/10 bg-white shadow-2xl transition-all duration-300 ease-out dark:border-white/10 dark:bg-neutral-950 sm:right-6 ${
+        className={`chat-root fixed bottom-40 right-5 z-[90] flex w-[92vw] max-w-sm flex-col overflow-hidden rounded-3xl border border-black/10 bg-white/95 shadow-2xl backdrop-blur-xl transition-all duration-300 ease-out dark:border-white/10 dark:bg-neutral-950/95 md:bottom-24 sm:right-6 ${
           open
             ? 'pointer-events-auto h-[74vh] max-h-[600px] scale-100 opacity-100'
             : 'pointer-events-none h-[74vh] max-h-[600px] scale-90 opacity-0'
@@ -368,7 +368,7 @@ export function ChatWidget() {
           <div className="pointer-events-none absolute inset-0 bg-white/55 dark:bg-neutral-950/70" aria-hidden="true" />
 
           <div
-            ref={scrollRef}
+            ref={scrollRef} data-lenis-prevent
             className="relative h-full space-y-1 overflow-y-auto overflow-x-hidden px-4 py-4 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-black/15 [&::-webkit-scrollbar-track]:bg-transparent dark:[&::-webkit-scrollbar-thumb]:bg-white/15"
           >
             {messages.map((m, i) => {
@@ -402,7 +402,7 @@ export function ChatWidget() {
                       {m.content}
                     </div>
                     <span className="mt-1 flex items-center gap-1 px-1 text-[10px] text-neutral-500 dark:text-neutral-400">
-                      {m.time}
+                      <span suppressHydrationWarning>{m.time}</span>
                       {m.role === 'user' && <SentTick />}
                     </span>
                   </div>

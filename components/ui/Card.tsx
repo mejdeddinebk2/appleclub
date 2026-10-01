@@ -9,12 +9,16 @@ interface CardProps {
   interactive?: boolean;
   /** Default inner padding. Disable it for edge-to-edge media, then pad the content yourself. */
   padded?: boolean;
+  /** Stretch the content wrapper to the card's full height (for flex layouts and `fill` images). */
+  fill?: boolean;
+  /** Extra classes for the inner content wrapper. */
+  innerClassName?: string;
   children: ReactNode;
 }
 
 const MAX_TILT_DEG = 7;
 
-export function Card({ className, interactive = true, padded = true, children }: CardProps) {
+export function Card({ className, interactive = true, padded = true, fill = false, innerClassName, children }: CardProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const onMouseMove = (e: MouseEvent<HTMLDivElement>) => {
@@ -43,8 +47,9 @@ export function Card({ className, interactive = true, padded = true, children }:
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
       className={cn(
-        'group/card relative overflow-hidden rounded-3xl border border-neutral-200/70 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900/60',
+        'group/card neon-card squircle relative overflow-hidden rounded-3xl border border-neutral-200/70 bg-neutral-50 dark:border-neutral-800 dark:bg-neutral-900/60',
         padded && 'p-8',
+        fill && 'flex flex-col',
         interactive && 'tilt-card shine-sweep dark:hover:border-neutral-700',
         className,
       )}
@@ -56,7 +61,7 @@ export function Card({ className, interactive = true, padded = true, children }:
             className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/card:opacity-100"
             style={{
               background:
-                'radial-gradient(560px circle at var(--x, 50%) var(--y, 50%), rgba(0,113,227,0.12), transparent 45%)',
+                'radial-gradient(560px circle at var(--x, 50%) var(--y, 50%), rgb(var(--accent-rgb) / 0.12), transparent 45%)',
             }}
           />
           <div
@@ -65,7 +70,7 @@ export function Card({ className, interactive = true, padded = true, children }:
           />
         </>
       )}
-      <div className="relative">{children}</div>
+      <div className={cn('relative', fill && 'flex flex-1 flex-col', innerClassName)}>{children}</div>
     </div>
   );
 }

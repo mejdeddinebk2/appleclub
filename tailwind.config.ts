@@ -20,11 +20,13 @@ const config: Config = {
         ],
       },
       colors: {
+        // Driven by CSS variables so the visitor can switch accent palettes at runtime.
         accent: {
-          DEFAULT: '#0071e3',
-          hover: '#0077ed',
-          light: '#2997ff',
+          DEFAULT: 'rgb(var(--accent-rgb) / <alpha-value>)',
+          hover: 'rgb(var(--accent-hover-rgb) / <alpha-value>)',
+          light: 'rgb(var(--accent-light-rgb) / <alpha-value>)',
         },
+        accent2: 'rgb(var(--accent2-rgb) / <alpha-value>)',
       },
       keyframes: {
         'fade-up': {

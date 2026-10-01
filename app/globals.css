@@ -25,7 +25,7 @@
   /* Custom scrollbar: slim, rounded, accent-tinted */
   html {
     scrollbar-width: thin;
-    scrollbar-color: rgba(0, 113, 227, 0.45) transparent;
+    scrollbar-color: rgb(var(--accent-rgb) / 0.45) transparent;
   }
   ::-webkit-scrollbar {
     width: 11px;
@@ -38,16 +38,16 @@
     border: 3px solid transparent;
     border-radius: 999px;
     background-clip: content-box;
-    background-image: linear-gradient(180deg, rgba(0, 113, 227, 0.55), rgba(41, 151, 255, 0.35));
+    background-image: linear-gradient(180deg, rgb(var(--accent-rgb) / 0.55), rgb(var(--accent-light-rgb) / 0.35));
   }
   ::-webkit-scrollbar-thumb:hover {
-    background-image: linear-gradient(180deg, rgba(0, 113, 227, 0.8), rgba(41, 151, 255, 0.55));
+    background-image: linear-gradient(180deg, rgb(var(--accent-rgb) / 0.8), rgb(var(--accent-light-rgb) / 0.55));
   }
   .dark html {
-    scrollbar-color: rgba(41, 151, 255, 0.4) transparent;
+    scrollbar-color: rgb(var(--accent-light-rgb) / 0.4) transparent;
   }
   .dark ::-webkit-scrollbar-thumb {
-    background-image: linear-gradient(180deg, rgba(41, 151, 255, 0.45), rgba(99, 102, 241, 0.3));
+    background-image: linear-gradient(180deg, rgb(var(--accent-light-rgb) / 0.45), rgb(var(--accent2-rgb) / 0.3));
   }
 
   /* Fine, animated film-grain over the whole page — subtle, premium texture. */
@@ -108,7 +108,7 @@
   .shimmer-text {
     background-image:
       linear-gradient(110deg, transparent 40%, rgba(255, 255, 255, 0.85) 50%, transparent 60%),
-      linear-gradient(90deg, #0ea5e9, #2563eb, #ef4444);
+      linear-gradient(90deg, rgb(var(--accent-light-rgb)), rgb(var(--accent-rgb)), rgb(var(--accent2-rgb)));
     background-size:
       200% 100%,
       100% 100%;
@@ -124,7 +124,7 @@
   .dark .shimmer-text {
     background-image:
       linear-gradient(110deg, transparent 40%, rgba(255, 255, 255, 0.55) 50%, transparent 60%),
-      linear-gradient(90deg, #38bdf8, #60a5fa, #f87171);
+      linear-gradient(90deg, rgb(var(--accent-light-rgb)), rgb(var(--accent-light-rgb)), rgb(var(--accent2-rgb)));
   }
 
   /* Seamless infinite strip used by <Ticker />: track is duplicated, so -50% loops cleanly. */
@@ -177,22 +177,22 @@
   .aurora-veil {
     background: conic-gradient(
       from 0deg at 50% 50%,
-      rgba(41, 151, 255, 0.16),
-      rgba(99, 102, 241, 0.1) 25%,
-      rgba(244, 63, 94, 0.08) 50%,
-      rgba(56, 189, 248, 0.14) 75%,
-      rgba(41, 151, 255, 0.16)
+      rgb(var(--accent-light-rgb) / 0.16),
+      rgb(var(--accent-rgb) / 0.1) 25%,
+      rgb(var(--accent2-rgb) / 0.08) 50%,
+      rgb(var(--accent-light-rgb) / 0.14) 75%,
+      rgb(var(--accent-light-rgb) / 0.16)
     );
     animation: aurora-spin 26s linear infinite;
   }
   .dark .aurora-veil {
     background: conic-gradient(
       from 0deg at 50% 50%,
-      rgba(41, 151, 255, 0.14),
-      rgba(99, 102, 241, 0.09) 25%,
-      rgba(244, 63, 94, 0.07) 50%,
-      rgba(56, 189, 248, 0.12) 75%,
-      rgba(41, 151, 255, 0.14)
+      rgb(var(--accent-light-rgb) / 0.14),
+      rgb(var(--accent-rgb) / 0.09) 25%,
+      rgb(var(--accent2-rgb) / 0.07) 50%,
+      rgb(var(--accent-light-rgb) / 0.12) 75%,
+      rgb(var(--accent-light-rgb) / 0.14)
     );
   }
 

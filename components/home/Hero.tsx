@@ -1,4 +1,6 @@
 import Image from 'next/image';
+import { DaypartChip } from '@/components/home/DaypartChip';
+import { FloatingIcon3D } from '@/components/home/FloatingIcon3D';
 import { HeroBackground } from '@/components/home/HeroBackground';
 import { HeroScrollFx } from '@/components/home/HeroScrollFx';
 import { ArrowRightIcon } from '@/components/icons';
@@ -16,6 +18,9 @@ export function Hero() {
           <div className="grid items-center gap-14 lg:grid-cols-[1fr_1.15fr] lg:gap-16 xl:gap-20">
             {/* Text column */}
             <div className="text-center lg:text-left">
+              <div className="mb-6 animate-fade-up">
+                <DaypartChip />
+              </div>
               <div className="relative mx-auto w-fit animate-fade-up lg:mx-0">
                 <div
                   aria-hidden
@@ -99,7 +104,9 @@ export function Hero() {
                 />
               </div>
 
-              <div className="absolute -bottom-6 -left-4 hidden rounded-2xl border border-neutral-200/80 bg-white/90 px-5 py-3 shadow-xl backdrop-blur-md dark:border-neutral-800 dark:bg-neutral-900/90 sm:block">
+              <FloatingIcon3D className="pointer-events-none absolute -right-3 -top-12 z-10 h-36 w-36 sm:-right-8 sm:-top-16 sm:h-48 sm:w-48 lg:-right-10 lg:-top-20 lg:h-60 lg:w-60" />
+
+              <div className="glass glass-spec squircle absolute -bottom-6 -left-4 hidden rounded-2xl px-5 py-3 sm:block">
                 <p className="text-lg font-semibold tracking-tight">🍎 Apple Club EPI</p>
                 <p className="text-xs text-neutral-500 dark:text-neutral-400">Think Different. Create Together.</p>
               </div>

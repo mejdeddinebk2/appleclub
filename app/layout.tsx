@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import { ChatWidget } from '@/components/chat/ChatWidget';
+import { Intro } from '@/components/effects/Intro';
+import { SiteEffects } from '@/components/effects/SiteEffects';
+import { SmoothScroll } from '@/components/effects/SmoothScroll';
+import { Dock } from '@/components/layout/Dock';
 import { Footer } from '@/components/layout/Footer';
 import { Navbar } from '@/components/layout/Navbar';
 import { CommandPalette } from '@/components/ui/CommandPalette';
@@ -8,6 +12,7 @@ import { CursorGlow } from '@/components/ui/CursorGlow';
 import { ScrollProgress } from '@/components/ui/ScrollProgress';
 import { siteConfig } from '@/data/site';
 import './globals.css';
+import './premium.css';
 
 const defaultTitle = `${siteConfig.name} · ${siteConfig.school}`;
 
@@ -46,7 +51,10 @@ export const viewport: Viewport = {
 };
 
 // Applies the saved theme (or the system preference) before first paint to avoid a flash.
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');var d=t?t==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;document.documentElement.classList.toggle('dark',d);}catch(e){}})();`;
+// Also restores the accent palette + Midnight mode, tags the time of day for the hero sky,
+// and flags the first-visit intro (home page only, once per session, never for reduced motion).
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
+const themeScript = `(function(){var r=document.documentElement;try{var t=localStorage.getItem('theme');var d=t?(t==='dark'||t==='midnight'):window.matchMedia('(prefers-color-scheme: dark)').matches;r.classList.toggle('dark',d);if(t==='midnight')r.setAttribute('data-mode','midnight');var a=localStorage.getItem('accent');if(a&&a!=='blue')r.setAttribute('data-accent',a);}catch(e){}try{var h=new Date().getHours();r.setAttribute('data-daypart',h>=5&&h<8?'dawn':h>=8&&h<17?'day':h>=17&&h<20?'dusk':'night');}catch(e){}try{var p=location.pathname;while(p.length&&p.charAt(p.length-1)==='/')p=p.slice(0,-1);if(p===${JSON.stringify(BASE_PATH)}&&!sessionStorage.getItem('intro-seen')&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){r.setAttribute('data-intro','1');sessionStorage.setItem('intro-seen','1');}}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
@@ -64,14 +72,20 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           Skip to content
         </a>
+        <Intro />
+        <SmoothScroll />
+        <SiteEffects />
         <Navbar />
+        <Dock />
         <ScrollProgress />
         <CursorGlow />
         <CommandPalette />
         <main id="main" className="pt-14">
           {children}
         </main>
-        <Footer />
+        <div className="pb-24 md:pb-0">
+          <Footer />
+        </div>
         <ChatWidget />
       </body>
     </html>

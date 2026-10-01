@@ -13,7 +13,7 @@ import {
 import { ChevronLeftIcon, ChevronRightIcon, CloseIcon, ExpandIcon } from '@/components/icons';
 import { Reveal } from '@/components/ui/Reveal';
 import type { GalleryImage } from '@/lib/types';
-import { asset } from '@/lib/utils';
+import { asset, BLUR_DATA_URL, cn } from '@/lib/utils';
 
 // Fixed locale + UTC so server and browser render the same text.
 const dateFormatter = new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' });
@@ -45,11 +45,100 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
   const triggerRefs = useRef<Array<HTMLButtonElement | null>>([]);
   const lastIndexRef = useRef<number | null>(null);
   const touchStartX = useRef<number | null>(null);
+  const listRef = useRef<HTMLUListElement>(null);
+  const lightImgRef = useRef<HTMLImageElement>(null);
+  const flipPending = useRef(false);
+  const [navigated, setNavigated] = useState(false);
   const count = images.length;
 
   const close = useCallback(() => setIndex(null), []);
-  const showPrev = useCallback(() => setIndex((i) => (i === null ? i : (i - 1 + count) % count)), [count]);
-  const showNext = useCallback(() => setIndex((i) => (i === null ? i : (i + 1) % count)), [count]);
+  const showPrev = useCallback(() => {
+    setNavigated(true);
+    setIndex((i) => (i === null ? i : (i - 1 + count) % count));
+  }, [count]);
+  const showNext = useCallback(() => {
+    setNavigated(true);
+    setIndex((i) => (i === null ? i : (i + 1) % count));
+  }, [count]);
+
+  const openAt = (i: number) => {
+    flipPending.current = true;
+    setNavigated(false);
+    setIndex(i);
+  };
+
+  /** Shared-element transition: the photo flies between its grid slot and the viewer. */
+  const flip = useCallback((target: number, direction: 'in' | 'out', done?: () => void) => {
+    const img = lightImgRef.current;
+    const thumb = triggerRefs.current[target];
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!img || !thumb || reduced) {
+      done?.();
+      return;
+    }
+    const from = thumb.getBoundingClientRect();
+    const to = img.getBoundingClientRect();
+    if (to.width === 0 || from.bottom < 0 || from.top > window.innerHeight) {
+      done?.();
+      return;
+    }
+    const small = `translate(${from.left - to.left}px, ${from.top - to.top}px) scale(${from.width / to.width}, ${from.height / to.height})`;
+    const frames = direction === 'in' ? [{ transform: small }, { transform: 'none' }] : [{ transform: 'none' }, { transform: small }];
+    const anim = img.animate(frames, {
+      duration: direction === 'in' ? 560 : 380,
+      easing: direction === 'in' ? 'cubic-bezier(0.16, 1, 0.3, 1)' : 'cubic-bezier(0.5, 0, 0.75, 0)',
+      fill: 'both',
+    });
+    anim.onfinish = () => done?.();
+  }, []);
+
+  const requestClose = useCallback(() => {
+    const last = lastIndexRef.current;
+    if (last === null) {
+      close();
+      return;
+    }
+    flip(last, 'out', close);
+  }, [close, flip]);
+
+  // Parallax: columns drift at slightly different speeds on large screens.
+  useEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const wide = window.matchMedia('(min-width: 1024px)');
+    if (reduced) return;
+    const factors = [0.06, -0.05, 0.08];
+    let raf = 0;
+    const update = () => {
+      const items = Array.from(list.children) as HTMLElement[];
+      if (!wide.matches) {
+        items.forEach((li) => li.style.removeProperty('translate'));
+        return;
+      }
+      const vh = window.innerHeight;
+      const colW = list.clientWidth / 3;
+      items.forEach((li) => {
+        const r = li.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        const col = Math.min(2, Math.max(0, Math.round(li.offsetLeft / colW)));
+        const offset = (r.top + r.height / 2 - vh / 2) * factors[col];
+        li.style.translate = `0 ${Math.max(-48, Math.min(48, offset)).toFixed(1)}px`;
+      });
+    };
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [count]);
 
   // Sync React state with the native dialog
   useEffect(() => {
@@ -60,11 +149,15 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
       if (!dialog.open) {
         dialog.showModal();
         document.body.style.overflow = 'hidden';
+        if (flipPending.current) {
+          flipPending.current = false;
+          requestAnimationFrame(() => flip(index, 'in'));
+        }
       }
     } else if (dialog.open) {
       dialog.close();
     }
-  }, [index]);
+  }, [index, flip]);
 
   useEffect(
     () => () => {
@@ -93,7 +186,7 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
   };
 
   const handleBackdropClick = (event: MouseEvent<HTMLDivElement>) => {
-    if (event.target === event.currentTarget) close();
+    if (event.target === event.currentTarget) requestClose();
   };
 
   const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
@@ -118,7 +211,7 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
 
   return (
     <>
-      <ul className="columns-1 gap-4 sm:columns-2 lg:columns-3">
+      <ul ref={listRef} className="relative columns-1 gap-4 sm:columns-2 lg:columns-3">
         {images.map((image, i) => {
           const meta = imageMeta(image);
           return (
@@ -129,7 +222,8 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
                     triggerRefs.current[i] = el;
                   }}
                   type="button"
-                  onClick={() => setIndex(i)}
+                  onClick={() => openAt(i)}
+                  data-cursor="View"
                   aria-haspopup="dialog"
                   aria-label={`Open photo: ${image.caption}`}
                   className="group relative block w-full overflow-hidden rounded-3xl bg-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 dark:bg-neutral-900 dark:focus-visible:ring-offset-black"
@@ -141,6 +235,8 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
                     height={image.height}
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     unoptimized={image.src.endsWith('.svg')}
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
                     className="h-auto w-full transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   {/* Caption overlay: always visible on touch-size screens, on hover/focus from sm up */}
@@ -170,12 +266,17 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
         ref={dialogRef}
         aria-label="Photo viewer"
         onClose={handleDialogClose}
+        onCancel={(e) => {
+          e.preventDefault();
+          requestClose();
+        }}
         onKeyDown={handleKeyDown}
+        data-lenis-prevent
         className="m-0 h-dvh max-h-none w-full max-w-none overflow-hidden bg-transparent p-0 text-white backdrop:bg-black/90 backdrop:backdrop-blur-md"
       >
         <button
           type="button"
-          onClick={close}
+          onClick={requestClose}
           aria-label="Close photo viewer"
           className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
         >
@@ -213,6 +314,7 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
             <figure className="flex max-h-full w-full max-w-6xl flex-col items-center">
               <Image
                 key={current.id}
+                ref={lightImgRef}
                 src={asset(current.src)}
                 alt={current.alt}
                 width={current.width}
@@ -220,7 +322,10 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
                 sizes="100vw"
                 loading="eager"
                 unoptimized={current.src.endsWith('.svg')}
-                className="h-auto max-h-[calc(100dvh-12rem)] w-auto max-w-full animate-fade-in rounded-2xl object-contain shadow-2xl"
+                className={cn(
+                  'h-auto max-h-[calc(100dvh-12rem)] w-auto max-w-full rounded-2xl object-contain shadow-2xl',
+                  navigated && 'animate-fade-in',
+                )}
               />
               <figcaption className="mt-5 max-w-2xl text-center">
                 <p className="font-medium">{current.caption}</p>

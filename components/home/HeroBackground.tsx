@@ -36,27 +36,39 @@ export function HeroBackground() {
       raf = requestAnimationFrame(tick);
     };
 
+    // Phones: let the gyroscope nudge the blobs where no permission prompt is needed.
+    const onTilt = (e: DeviceOrientationEvent) => {
+      if (e.gamma == null || e.beta == null) return;
+      px = Math.max(-1, Math.min(1, e.gamma / 30));
+      py = Math.max(-1, Math.min(1, (e.beta - 45) / 30));
+    };
+    const needsPermission =
+      typeof (DeviceOrientationEvent as unknown as { requestPermission?: unknown }).requestPermission === 'function';
+    if (!canHover && !needsPermission) window.addEventListener('deviceorientation', onTilt);
+
     if (canHover) window.addEventListener('pointermove', onMove, { passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
     raf = requestAnimationFrame(tick);
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('deviceorientation', onTilt);
       window.removeEventListener('scroll', onScroll);
     };
   }, []);
 
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <div className="sky-veil absolute inset-0" />
       <div ref={scrollLayer} className="absolute inset-0">
         <div className="aurora-veil absolute left-1/2 top-1/2 h-[60rem] w-[60rem] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-70 blur-3xl" />
         <div
           ref={blob1}
-          className="absolute left-[35%] top-[38%] h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 animate-float rounded-full bg-gradient-to-tr from-sky-300/40 via-blue-400/30 to-indigo-400/40 blur-3xl sm:h-[38rem] sm:w-[38rem] dark:from-sky-500/20 dark:via-blue-600/20 dark:to-indigo-700/25"
+          className="absolute left-[35%] top-[38%] h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 animate-float rounded-full bg-gradient-to-tr from-accent-light/40 via-accent/30 to-accent2/30 blur-3xl sm:h-[38rem] sm:w-[38rem] dark:from-accent-light/20 dark:via-accent/20 dark:to-accent2/25"
         />
         <div
           ref={blob2}
-          className="absolute left-[65%] top-[55%] h-[22rem] w-[22rem] -translate-x-1/2 -translate-y-1/2 animate-float-slow rounded-full bg-gradient-to-tr from-rose-300/30 via-red-400/25 to-orange-300/30 blur-3xl sm:h-[30rem] sm:w-[30rem] dark:from-rose-500/15 dark:via-red-600/15 dark:to-orange-500/15"
+          className="absolute left-[65%] top-[55%] h-[22rem] w-[22rem] -translate-x-1/2 -translate-y-1/2 animate-float-slow rounded-full bg-gradient-to-tr from-accent2/30 via-accent2/20 to-accent-light/25 blur-3xl sm:h-[30rem] sm:w-[30rem] dark:from-accent2/15 dark:via-accent2/15 dark:to-accent-light/15"
         />
         <div className="grid-veil absolute inset-0 opacity-[0.35]" />
       </div>
